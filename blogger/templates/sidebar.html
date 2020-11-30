@@ -1,0 +1,51 @@
+{% block sidebar %}
+
+<style>
+        .card{
+            box-shadow: 0 16px 48px #E3E7EB;
+        }
+       
+</style>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-right ">
+<div class="card my-4">
+        <h5 class="card-header">About Us</h5>
+    <div class="card-body">
+        <p class="card-text"> This awesome blog is built on Django powered by Python. Free Bootstrap templates have been used for designing the site.</p>
+        
+        <table>
+            <tr>
+    
+        <!-- Sharing on Facebook-->
+        <td><a href="#" 
+            onclick="
+            window.open(
+            'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+            'facebook-share-dialog', 
+            'width=626,height=436'); 
+            return false;" >
+        <img height="30px" src="/static/images/facebook-share.png">
+        </a></td>    
+
+        <td></td><td></td><td></td>
+
+        <!-- Sharing on Twitter-->
+        <td><a href="#" 
+            onclick="
+            window.open(
+            'https://twitter.com/intent/tweet?text=Check out my blogging site&url='+encodeURIComponent(location.href), 
+            'twitter-share-dialog', 
+            'width=626,height=436'); 
+            return false;" >
+        <img height="30px" src="/static/images/twitter-share.png">
+        </a></td>
+
+            </tr>
+        </table>
+
+    </div>
+</div>
+</div>
+
+{% endblock sidebar %}

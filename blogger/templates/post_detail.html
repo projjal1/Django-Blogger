@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% block content %}
+
+<script>
+  function loaddoc()
+  {
+    var s = '{{cont}}';
+    s=s.replaceAll('&lt;','<');
+    s=s.replaceAll('&gt;','>');
+    //Load the document content
+    document.getElementById("content").innerHTML=s;
+    //Hide button after clicking once
+    document.getElementById("but-click").hidden=true;
+  }
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 card mb-4  mt-3 left  top">
+      <div class="card-body">
+        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
+        <p class=" text-muted">{{ object.author }} | {{ object.created_on }} </p>
+        <p id="like">| {{ object.likes}} Likes</p>
+        <p><img height="200" src={{image_cont}}></p>
+        <div class="container" id="content"></div>
+        <br>
+        <button id="but-click" class="btn btn-primary" onclick="loaddoc()">Click to read..</button>
+
+      <hr>
+      <table><tr>
+        <td><span class="label share">Share to sites</span></td>
+
+        <!-- Sharing on Facebook-->
+        <td><a href="#" 
+          onclick="
+          window.open(
+          'https://www.facebook.com/sharer/sharer.php?u={{url|urlencode}}',
+          'facebook-share-dialog', 
+          'width=626,height=436'); 
+          return false;" >
+        <img height="30px" src="/static/images/facebook-share.png">
+        </a></td>    
+
+        <td></td><td></td>
+
+        <!-- Sharing on Twitter-->
+        <td><a href="#" 
+          onclick="
+          window.open(
+          'https://twitter.com/intent/tweet?text=Check out my article on {{object.title}} at &url='+encodeURIComponent(location.href), 
+          'twitter-share-dialog', 
+          'width=626,height=436'); 
+          return false;" >
+          <img height="30px" src="/static/images/twitter-share.png">
+        </a></td>
+
+        <td></td><td></td>
+
+        <!-- Share on LinkedIn-->
+        <td><a href="#" 
+          onclick="
+          window.open(
+          'https://www.linkedin.com/shareArticle?mini=true&url={{url|urlencode}}&title={{object.title|urlencode}}&summary=Check out my article. &source=', 
+          'linkedin-share-dialog', 
+          'width=626,height=436'); 
+          return false;" >
+          <img height="30px" src="/static/images/linkedin-share.png">
+        </a></td>
+
+        <td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        <td><input id="upvote" type="button" class="label upvote" value="Upvote"></td>
+        <td><label id="show-msg-upvote" hidden>You have upvoted article..</label></td>
+    
+      </tr></table>
+    </div>
+    </div>
+    {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+  </div>
+</div>
+
+{% endblock content %}
