@@ -45,7 +45,7 @@ def PostDetail(request,blog_id):
     content=content.replace('"',"")
 
     #new path
-    new_path = url[:[m.start() for m in re.finditer(r"/",url)][2]+1]+s[s.index('static'):]
+    new_path = url[:url.index('post')]+s.replace('post/','')
 
     return render(request,"post_detail.html",{"object":ob,"url":request.build_absolute_uri(),"image_cont":new_path,"cont":content})
 
